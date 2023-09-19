@@ -1,0 +1,87 @@
+#---------- Função para os adicionais ---------
+
+def adicionais():
+    contador = 0
+    while True:
+         try:
+            print('Deseja mais algum serviço? : ')
+            print('( 0 ) - Não desejo mais nada. (Encerrar)')
+            print('( 1 ) - Passar 10 peças de roupa - R$10,00')
+            print('( 2 ) - Limpeza de 1 Forno/Micro-Ondas - R$ 12,00')
+            print('( 3 ) - Limpeza de uma geladeira/freezer - R$ 20,00')
+            adicional = int(input('>>> '))
+            if adicional == 1:
+                  print('Adicional 1 selecionado')
+                  contador += 10
+                  print('O total de adicionais até agora é de: {}'.format(contador))
+            elif adicional == 2:
+                  print('Adicional 2 selecionado')
+                  contador += 12
+                  print('O total de adicionais até agora é de: {}'.format(contador))
+            elif adicional == 3:
+                  print('Adicional 3 selecionado')
+                  contador += 20
+                  print('O total de adicionais até agora é de: {}'.format(contador))
+            elif adicional == 0:
+
+                  print('Encerrando o programa...')
+                  return contador
+         except ValueError:
+            print('!!!! Dados inválidos !!!')
+            continue
+
+#---------- Função para o tipo de limpeza desejada ------------
+
+def tipo_limpeza():
+   while True:
+      try:
+         print('Entre com o tipo de limpeza: ')
+         print('( B ) - Básica - indicada para sujeiras semanais ou quinzenais: ')
+         print('( C ) - Completa (30% a mais) - indicada para sujeiras antigas e/ou não rotineiras: ')
+         opcao = input('>>>')
+         if opcao == 'b':
+            print('Você selecionou a limpeza básica: ')
+            return 1.00
+         elif opcao == 'c':
+            print('Você selecionou a limpeza completa: ')
+            return 1.30
+         else:
+            print('Opção inválida. Tente novamente! ')
+            continue
+      except ValueError:
+         print('!!!!!!! Opção Inválida !!!!!!!')
+         continue
+
+#------------- Função para a metragem da casa ----------
+
+def metragem_limpeza():
+   while True:
+      try:
+         metragem = float(input('Entre com a metragem da casa (m²): \n>>> '))
+         if 30 <= metragem < 300:
+            valor = 60 + 0.3 * metragem
+            return valor
+         elif 300 <= metragem <= 700:
+            valor = 120 + 0.5 * metragem
+            return valor
+         elif metragem < 30:
+            print('Trabalhamos apenas com valores acima de 30m² e abaixo de 700m²: ')
+         elif metragem > 700:
+            print('Trabalhamos apenas com valores acima de 30m² e abaixo de 700m²: ')
+         else:
+            print('Comando inválido! ')
+            continue
+      except ValueError:
+         print('!!!!!!! Opção inválida !!!!!!!')
+         continue
+
+
+# --------- Programa Principal ----------
+
+print('Bem vindo ao programa de serviços Limpando sua house')
+metragem = metragem_limpeza()
+opcao = tipo_limpeza()
+adicional1 = adicionais()
+total = metragem * opcao + adicional1
+print('O total do pedido é de: {}'.format(total))
+print('descrição do pedido sendo METRAGEM, TIPO DE LIMPEZA E ADICIONAIS: {} * {} + {}'.format(metragem, opcao, adicional1))
